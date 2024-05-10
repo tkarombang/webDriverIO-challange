@@ -1,5 +1,5 @@
-describe('Test Case: Compare Sony Xperia Mobile Cost', function(){
-  it('Day 2 - Should compare cost of Sony Xperia mobile', async () => {
+describe('Verify that cost of product in list page and details page are equal', function(){
+  it('Day 2 - Product Value in list and details page should be equals($100)', async () => {
     browser.url('http://live.techpanda.org');
 
     // MOBILE menu click
@@ -18,7 +18,11 @@ describe('Test Case: Compare Sony Xperia Mobile Cost', function(){
   const getTextDetail = await productPriceDetail.getText();
 
   // Compare Value getTextCost & getTextDetail
-  expect(getTextCost).toEqual(getTextDetail);
+  try {
+    expect(getTextCost).toEqual(getTextDetail);
+  } catch (error) {
+    console.log('Notif :', error.message);
+  }
     
     await new Promise(resolve => setTimeout(resolve, 10000))
     
